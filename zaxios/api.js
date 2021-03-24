@@ -22,6 +22,27 @@ app.post('/post',function(req,res){
   res.json(req.body);
 })
 app.post('/post_status',function(req,res){
-  
+  let {code} = req.query;
+  console.log(req.query);
+  if(code){
+    code = parseInt(code);
+  }else{
+    code = 200;
+  }
+  res.statusCode = code;
+  res.json(req.body);
+})
+app.post('/post_timeout',function(req,res){
+  let {timeout} = req.query;
+  console.log(req.query);
+  if(timeout){
+    timeout = parseInt(timeout);
+  }else{
+    timeout = 0;
+  }
+  setTimeout(function(){
+    res.json(req.body)
+  },timeout)
+
 })
 app.listen(8080);
